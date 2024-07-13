@@ -1,0 +1,26 @@
+{
+    "name": "Megu",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "llvm-vs-code-extensions.vscode-clangd",
+                "llvm-vs-code-extensions.vscode-mlir",
+                "ms-vscode.cmake-tools",
+                "vadimcn.vscode-lldb"
+            ],
+            "settings": {
+                "cmake.configureSettings": {
+                    "MLIR_DIR": "/usr/lib/llvm-18/lib/cmake/mlir",
+                    "CMAKE_CXX_COMPILER": "/usr/bin/clang++-18",
+                    "CMAKE_C_COMPILER": "/usr/bin/clang-18"
+                },
+                "cmake.generator": "Ninja",
+                "clangd.path": "clangd-18",
+                "mlir.tablegen_server_path": "/usr/bin/tblgen-lsp-server-18"
+            }
+        }
+    }
+}
