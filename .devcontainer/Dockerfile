@@ -1,20 +1,22 @@
 FROM debian:trixie
 
+ARG LLVM_VERSION=19
+
 RUN apt-get update && \
     apt-get install -y curl
 
 RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key >> /etc/apt/trusted.gpg.d/apt.llvm.org.asc \
-    && echo "deb [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/unstable/ llvm-toolchain-18 main" \
+    && echo "deb [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/unstable/ llvm-toolchain-${LLVM_VERSION} main" \
         >> /etc/apt/sources.list.d/llvm.list
 
 RUN apt-get update && apt-get install -y \
     # mlir
-    libmlir-18-dev mlir-18-tools \
+    libmlir-${LLVM_VERSION}-dev mlir-${LLVM_VERSION}-tools \
     # tools
-    clangd-18 clang-tidy-18 clang-format-18 clang-tools-18 \
+    clangd-${LLVM_VERSION} clang-tidy-${LLVM_VERSION} clang-format-${LLVM_VERSION} clang-tools-${LLVM_VERSION} \
     # compiler
-    clang-18 lldb-18 lld-18 \
+    clang-${LLVM_VERSION} lldb-${LLVM_VERSION} lld-${LLVM_VERSION} \
     # libc++
-    libc++-18-dev libc++abi-18-dev libllvmlibc-18-dev \
+    libc++-${LLVM_VERSION}-dev libc++abi-${LLVM_VERSION}-dev libllvmlibc-${LLVM_VERSION}-dev \
     # cmake 
     cmake ninja-build git
