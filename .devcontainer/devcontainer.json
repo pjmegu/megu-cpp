@@ -13,13 +13,14 @@
             ],
             "settings": {
                 "cmake.configureSettings": {
-                    "MLIR_DIR": "/usr/lib/llvm-18/lib/cmake/mlir",
-                    "CMAKE_CXX_COMPILER": "/usr/bin/clang++-18",
-                    "CMAKE_C_COMPILER": "/usr/bin/clang-18"
+                    "MLIR_DIR": "/usr/lib/llvm-19/lib/cmake/mlir",
+                    "CMAKE_CXX_COMPILER": "/usr/bin/clang++-19",
+                    "CMAKE_C_COMPILER": "/usr/bin/clang-19",
+                    "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
                 },
                 "cmake.generator": "Ninja",
-                "clangd.path": "clangd-18",
-                "mlir.tablegen_server_path": "/usr/bin/tblgen-lsp-server-18"
+                "clangd.path": "clangd-19",
+                "mlir.tablegen_server_path": "/usr/bin/tblgen-lsp-server-19"
             }
         }
     }
