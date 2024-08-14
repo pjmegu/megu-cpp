@@ -6,4 +6,4 @@
 #include "mlir/IR/Builders.h"
 
 #define GET_OP_CLASSES
-#include "MokeyToken/MokeyTokenOps.h.inc"
+#include "mokey/MokeyToken/MokeyTokenOps.h.inc"

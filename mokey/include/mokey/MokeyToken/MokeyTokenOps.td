@@ -1,7 +1,7 @@
 #ifndef MOKEY_TOKEN_OPS
 #define MOKEY_TOKEN_OPS
 
-include "MokeyToken/MokeyTokenDialect.td"
+include "mokey/MokeyToken/MokeyTokenDialect.td"
 
 def MokeyToken_TokenStr: MokeyToken_Op<"tokenstr"> {
     let arguments = (ins StrAttr:$token);
