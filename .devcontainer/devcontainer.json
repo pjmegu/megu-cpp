@@ -3,13 +3,21 @@
     "build": {
         "dockerfile": "Dockerfile"
     },
+    "mounts": [
+        {
+            "type": "volume",
+            "source": "megu-build",
+            "target": "${containerWorkspaceFolder}/build"
+        }
+    ],
     "customizations": {
         "vscode": {
             "extensions": [
                 "llvm-vs-code-extensions.vscode-clangd",
                 "llvm-vs-code-extensions.vscode-mlir",
                 "ms-vscode.cmake-tools",
-                "vadimcn.vscode-lldb"
+                "vadimcn.vscode-lldb",
+                "ms-python.python"
             ],
             "settings": {
                 "cmake.configureSettings": {

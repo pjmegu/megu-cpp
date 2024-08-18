@@ -19,6 +19,4 @@ RUN apt-get update && apt-get install -y \
     # libc++
     libc++-${LLVM_VERSION}-dev libc++abi-${LLVM_VERSION}-dev libllvmlibc-${LLVM_VERSION}-dev \
     # cmake 
-    cmake ninja-build git \
-    # python
-    python3
+    cmake ninja-build git
