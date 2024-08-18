@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(Megu-thesis)
+project(Megu)
 
 # mlir setup
 find_package(MLIR REQUIRED CONFIG)
