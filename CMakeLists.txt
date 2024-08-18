@@ -22,3 +22,4 @@ include_directories(${PROJECT_SOURCE_DIR}/mokey/include)
 include_directories(${PROJECT_BINARY_DIR}/mokey/include)
 
 add_subdirectory(mokey)
+add_subdirectory(mevil)
