@@ -1,8 +1,10 @@
 {
-    "name": "Megu",
+    "name": "Megu dev container",
     "build": {
-        "dockerfile": "Dockerfile"
+        "dockerfile": "Dockerfile",
+        "options": ["-t=megu_dev"]
     },
+    "runArgs": ["--name", "megu_devc"],
     "mounts": [
         {
             "type": "volume",

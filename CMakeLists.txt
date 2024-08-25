@@ -21,5 +21,10 @@ add_definitions(${LLVM_DEFINITIONS})
 include_directories(${PROJECT_SOURCE_DIR}/mokey/include)
 include_directories(${PROJECT_BINARY_DIR}/mokey/include)
 
+# llvm::clにてlibc++を使うとSEGVをキメます なんだそれ
+# libstdc++はだいじょぶらしい
+add_compile_options(-stdlib=libc++)
+add_link_options(-stdlib=libc++)
+
 add_subdirectory(mokey)
 add_subdirectory(mevil)
