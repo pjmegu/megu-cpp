@@ -53,6 +53,7 @@ add_llvm_executable(mevil
         src/main.cpp
         src/runPython.cpp
         src/util/util.cpp
+        src/loadlib/dialect.cpp
 )
 
 target_link_libraries(mevil PRIVATE pybind11::embed CLI11::CLI11 dylib)

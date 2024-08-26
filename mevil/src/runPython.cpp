@@ -95,7 +95,7 @@ mevil::runPython(const std::string &workspace_path) {
             for (auto source : module.sources) {
                 std::cout << source << " ";
             }
-            std::cout << "Events: ";
+            std::cout << "\n   Events: ";
             for (auto event : module.events) {
                 std::cout << "Event " << event.name << " Passes: ";
                 for (auto pass : event.passes) {
