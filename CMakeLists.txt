@@ -27,6 +27,9 @@ include_directories(${PROJECT_BINARY_DIR}/mokey/include)
 # add_compile_options(-stdlib=libc++)
 # add_link_options(-stdlib=libc++)
 
+# 緊急用
+add_link_options(-fuse-ld=mold)
+
 add_subdirectory(mokey)
 add_subdirectory(mevil)
 add_subdirectory(example)
