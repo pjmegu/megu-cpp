@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(Megu-thesis)
+project(Megu)
 
 # mlir setup
 find_package(MLIR REQUIRED CONFIG)
@@ -21,4 +21,11 @@ add_definitions(${LLVM_DEFINITIONS})
 include_directories(${PROJECT_SOURCE_DIR}/mokey/include)
 include_directories(${PROJECT_BINARY_DIR}/mokey/include)
 
+# llvm::clにてlibc++を使うとSEGVをキメます なんだそれ
+# libstdc++はだいじょぶらしい
+# pybind11はlibstdc++で死にます フシギダネ
+# add_compile_options(-stdlib=libc++)
+# add_link_options(-stdlib=libc++)
+
 add_subdirectory(mokey)
+add_subdirectory(mevil)
