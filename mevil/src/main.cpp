@@ -2,7 +2,7 @@
 #include "CLI/CLI.hpp"
 #include <iostream>
 #include <string>
-#include "./loadlib/dialect.h"
+#include "./loadlib/load_test.h"
 
 int main(int argc, char **argv) {
     CLI::App app("mevil - Mokey Project Manager", "mevil");
@@ -43,6 +43,8 @@ int main(int argc, char **argv) {
 
             if (load_dialect) {
                 mevil::load_dialect_test(load_file_path);
+            } else {
+                mevil::load_pass_test(load_file_path);
             }
         }
     }

@@ -4,7 +4,6 @@
         "dockerfile": "Dockerfile",
         "options": ["-t=megu_dev"]
     },
-    "runArgs": ["--name", "megu_devc"],
     "mounts": [
         {
             "type": "volume",
@@ -23,14 +22,16 @@
             ],
             "settings": {
                 "cmake.configureSettings": {
-                    "MLIR_DIR": "/usr/lib/llvm-19/lib/cmake/mlir",
-                    "CMAKE_CXX_COMPILER": "/usr/bin/clang++-19",
-                    "CMAKE_C_COMPILER": "/usr/bin/clang-19",
-                    "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+                    "MLIR_DIR": "/usr/lib/llvm-18/lib/cmake/mlir",
+                    "CMAKE_CXX_COMPILER": "/usr/bin/g++",
+                    "CMAKE_C_COMPILER": "/usr/bin/gcc",
+                    "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                    "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=mold",
+                    "CMAKE_SHARED_LINKER_FLAGS": "-fuse-ld=mold"
                 },
                 "cmake.generator": "Ninja",
-                "clangd.path": "clangd-19",
-                "mlir.tablegen_server_path": "/usr/bin/tblgen-lsp-server-19"
+                "clangd.path": "clangd-18",
+                "mlir.tablegen_server_path": "/usr/bin/tblgen-lsp-server-18"
             }
         }
     }
