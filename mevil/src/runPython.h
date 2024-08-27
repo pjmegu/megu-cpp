@@ -24,8 +24,8 @@ struct Module {
     Module();
     Module(std::vector<std::string> sources);
 
-    std::vector<std::string>& getSources() const;
-    std::vector<Event>& getEvents() const;
+    const std::vector<std::string>& getSources() const;
+    const std::vector<Event>& getEvents() const;
 };
 
 struct ModuleRef {
