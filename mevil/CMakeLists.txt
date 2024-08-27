@@ -56,7 +56,16 @@ add_llvm_executable(mevil
         src/loadlib/load_test.cpp
 )
 
-target_link_libraries(mevil PRIVATE pybind11::embed CLI11::CLI11 dylib)
+set(LIBS
+        ${dialect_libs}
+        ${conversion_libs}
+        MLIROptLib
+        pybind11::embed
+        CLI11::CLI11
+        dylib
+)
+
+target_link_libraries(mevil PRIVATE ${LIBS})
 target_include_directories(mevil PRIVATE ${glob_SOURCE_DIR}/single_include)
 llvm_update_compile_flags(mevil)
 target_compile_options(mevil PUBLIC -fexceptions)

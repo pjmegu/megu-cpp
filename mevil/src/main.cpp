@@ -1,8 +1,8 @@
+#include "./loadlib/load_test.h"
 #include "./runPython.h"
 #include "CLI/CLI.hpp"
 #include <iostream>
 #include <string>
-#include "./loadlib/load_test.h"
 
 int main(int argc, char **argv) {
     CLI::App app("mevil - Mokey Project Manager", "mevil");
