@@ -1,0 +1,1 @@
+build/mevil/mevil tool load -f build/example/lang/lisp/plugin/MLIRLispASTPlugin.so -d

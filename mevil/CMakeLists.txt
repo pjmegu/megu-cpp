@@ -44,6 +44,14 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(dylib)
 
+# for json
+FetchContent_Declare(
+        json
+        GIT_REPOSITORY https://github.com/nlohmann/json.git
+        GIT_TAG v3.11.3
+)
+FetchContent_MakeAvailable(json)
+
 # for llvm/mlir
 get_property(dialect_libs GLOBAL PROPERTY MLIR_DIALECT_LIBS)
 get_property(conversion_libs GLOBAL PROPERTY MLIR_CONVERSION_LIBS)
@@ -59,10 +67,12 @@ add_llvm_executable(mevil
 set(LIBS
         ${dialect_libs}
         ${conversion_libs}
-        MLIROptLib
+        MLIRIR
+        MLIRPluginsLib
         pybind11::embed
         CLI11::CLI11
         dylib
+        nlohmann_json::nlohmann_json
 )
 
 target_link_libraries(mevil PRIVATE ${LIBS})

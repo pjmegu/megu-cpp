@@ -3,6 +3,7 @@
 #include "CLI/CLI.hpp"
 #include <iostream>
 #include <string>
+#include <variant>
 
 int main(int argc, char **argv) {
     CLI::App app("mevil - Mokey Project Manager", "mevil");
@@ -32,7 +33,14 @@ int main(int argc, char **argv) {
     // run lint
     if (sub_lint->parsed()) {
         std::cout << "workspace path: " << workspace_path << std::endl;
-        mevil::runPython(workspace_path);
+        auto e = mevil::runPython(workspace_path);
+        if (std::holds_alternative<std::string>(e)) {
+            std::cout << "Error: " << std::get<std::string>(e) << std::endl;
+            return 1;
+        } else {
+            std::cout << "Success" << std::endl;
+            return 0;
+        }
     }
 
     // run tool
