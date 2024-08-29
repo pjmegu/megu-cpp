@@ -2,17 +2,15 @@
 #define MOKEY_TOKEN_OPS
 
 include "mokey/MokeyToken/MokeyTokenDialect.td"
+include "mlir/IR/RegionKindInterface.td"
 
-def MokeyToken_TokenStr: MokeyToken_Op<"tokenstr"> {
-    let arguments = (ins StrAttr:$token);
+def MokeyToken_Module: MokeyToken_Op<"module", [] # GraphRegionNoTerminator.traits> {
+    let arguments = (ins I64Attr:$id);
+    let regions = (region SizedRegion<1>:$body);
 }
 
-def MokeyToken_NewLine: MokeyToken_Op<"newline"> {
-    let arguments = (ins I32Attr:$num);
-}
-
-def MokeyToken_Space: MokeyToken_Op<"space"> {
-    let arguments = (ins I32Attr:$num);
+def MokeyToken_File: MokeyToken_Op<"file"> {
+    let arguments = (ins StrAttr:$file_path, StrAttr:$file_source);
 }
 
 #endif // MOKEY_TOKEN_OPS

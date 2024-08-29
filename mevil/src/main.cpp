@@ -1,9 +1,44 @@
 #include "./loadlib/load_test.h"
 #include "./runPython.h"
 #include "CLI/CLI.hpp"
+#include "buildEnv.h"
+#include "constMLIR/constMLIR.h"
+#include "mlir/IR/DialectRegistry.h"
+#include "mlir/Tools/Plugins/DialectPlugin.h"
 #include <iostream>
 #include <string>
 #include <variant>
+#include <vector>
+#include "mokey/MokeyToken/MokeyTokenDialect.h"
+
+int loadAndConstructMLIR(mevil::BuildEnv &build_env) {
+    mlir::DialectRegistry registory;
+    for (auto dialect : build_env.dialects) {
+        if (build_env.ident_map.has_dialect(dialect)) {
+            std::string dialect_path =
+                build_env.ident_map.get_dialect_path(dialect);
+            auto plugin = mlir::DialectPlugin::load(dialect_path);
+            if (auto E = plugin.takeError()) {
+                std::cout << "Failed to load dialect: "
+                          << llvm::toString(std::move(E)) << std::endl;
+                return 1;
+            }
+
+            plugin->registerDialectRegistryCallbacks(registory);
+        } else {
+            std::cout << "Error: dialect not found: " << dialect << std::endl;
+            return 1;
+        }
+    }
+
+    registory.insert<mokey::token::MokeyTokenDialect>();
+
+    mlir::MLIRContext context(registory);
+
+    mevil::constMLIR(build_env.modules, context);
+
+    return 0;
+}
 
 int main(int argc, char **argv) {
     CLI::App app("mevil - Mokey Project Manager", "mevil");
@@ -38,8 +73,10 @@ int main(int argc, char **argv) {
             std::cout << "Error: " << std::get<std::string>(e) << std::endl;
             return 1;
         } else {
-            std::cout << "Success" << std::endl;
-            return 0;
+            mevil::BuildEnv build_env = std::get<mevil::BuildEnv>(e);
+            if (loadAndConstructMLIR(build_env)) {
+                return 1;
+            }
         }
     }
 

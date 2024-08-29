@@ -1,1 +1,1 @@
-add_mlir_dialect(LispASTOps lisp)
+add_mlir_dialect(LispASTOps lisp_ast)

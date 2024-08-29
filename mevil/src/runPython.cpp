@@ -2,6 +2,7 @@
 #include "./buildEnv.h"
 #include "./util/util.h"
 #include "glob/glob.hpp"
+#include "identMap.h"
 #include "pybind11/embed.h"
 #include <filesystem>
 #include <iostream>
@@ -86,7 +87,7 @@ PYBIND11_EMBEDDED_MODULE(mevil, mod) {
             paths = glob::rglob(dir_path.string() + "/" + source_str);
             for (auto path : paths) {
                 std::cout << "Found: " << path << std::endl;
-                cpp_sources.push_back(path.string());
+                cpp_sources.push_back(fs::absolute(path).string());
             }
         }
 
@@ -96,7 +97,7 @@ PYBIND11_EMBEDDED_MODULE(mevil, mod) {
     });
 }
 
-std::variant<std::nullopt_t, std::string>
+std::variant<mevil::BuildEnv, std::string>
 mevil::runPython(const std::string &workspace_path) {
     py::scoped_interpreter guard{};
 
@@ -113,5 +114,5 @@ mevil::runPython(const std::string &workspace_path) {
 
     build_env.ident_map = mevil::IdentMap(workspace_path);
 
-    return std::nullopt;
+    return build_env;
 }

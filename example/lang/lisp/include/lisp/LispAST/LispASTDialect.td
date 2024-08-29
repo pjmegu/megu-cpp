@@ -4,7 +4,7 @@
 include "mlir/IR/OpBase.td"
 
 def LispAST_Dialect : Dialect {
-    let name = "lisp";
+    let name = "lisp_ast";
     let cppNamespace = "::mokey::example::lisp::ast";
 }
 

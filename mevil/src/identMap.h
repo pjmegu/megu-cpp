@@ -58,6 +58,10 @@ class IdentMap {
         return dialect_map[identifier];
     }
 
+    inline bool has_dialect(std::string identifier) {
+        return dialect_map.find(identifier) != dialect_map.end();
+    }
+
     inline std::string get_pass_path(std::string identifier) {
         return pass_map[identifier].pass_path;
     }

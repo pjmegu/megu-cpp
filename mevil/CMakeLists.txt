@@ -62,6 +62,7 @@ add_llvm_executable(mevil
         src/runPython.cpp
         src/util/util.cpp
         src/loadlib/load_test.cpp
+        src/constMLIR/constMLIR.cpp
 )
 
 set(LIBS
@@ -69,14 +70,15 @@ set(LIBS
         ${conversion_libs}
         MLIRIR
         MLIRPluginsLib
+        MLIRMokeyToken
         pybind11::embed
         CLI11::CLI11
         dylib
         nlohmann_json::nlohmann_json
 )
 
-target_link_libraries(mevil PRIVATE ${LIBS})
-target_include_directories(mevil PRIVATE ${glob_SOURCE_DIR}/single_include)
 llvm_update_compile_flags(mevil)
 target_compile_options(mevil PUBLIC -fexceptions)
+target_link_libraries(mevil PRIVATE ${LIBS})
+target_include_directories(mevil PRIVATE ${glob_SOURCE_DIR}/single_include)
 mlir_check_all_link_libraries(mevil)
